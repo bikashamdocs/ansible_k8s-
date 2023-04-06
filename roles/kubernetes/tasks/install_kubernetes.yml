@@ -1,20 +1,16 @@
-- name: Install Kubernetes
-  hosts: master,worker
-  become: true
-  tasks:
-    - name: Add Kubernetes GPG key
-      shell: curl -s {{ k8s_apt_repo_key_url }} | sudo apt-key add -
-      register: apt_update_result
+- name: Add Kubernetes GPG key
+  shell: curl -s {{ k8s_apt_repo_key_url }} | sudo apt-key add -
+  register: apt_update_result
 
-    - name: Add Kubernetes repository
-      shell: echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee {{ k8s_apt_repo_list_file_path }}
+- name: Add Kubernetes repository
+  shell: echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee {{ k8s_apt_repo_list_file_path }}
 
-    - name: Install kubelet, kubeadm, and kubectl
-      apt:
-        name: "{{ item }}"
-        state: present
-      with_items: "{{ k8s_package_list }}"
-      
-    - name: Hold Kubernetes packages at current version
-      shell: sudo apt-mark hold kubelet kubeadm kubectl
+- name: Install kubelet, kubeadm, and kubectl
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ k8s_package_list }}"
+
+- name: Hold Kubernetes packages at current version
+  shell: sudo apt-mark hold kubelet kubeadm kubectl
 

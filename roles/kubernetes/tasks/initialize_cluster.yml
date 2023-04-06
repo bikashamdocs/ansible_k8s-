@@ -1,8 +1,19 @@
 - name: Pull Kubernetes images
   command: kubeadm config images pull
   ignore_errors: yes
+  
+- name: Create repo directory
+  become: true
+  file:
+    path: /ansible/repo
+    state: directory
+  
 
 - name: Initialize Kubernetes cluster
-  command: kubeadm init
+  become: true
+  command: kubeadm init > /ansible/repo/kubeadm-init-output.log
+  args:
+    chdir: /tmp
+
 
 

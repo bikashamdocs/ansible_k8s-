@@ -11,9 +11,7 @@
 
 - name: Initialize Kubernetes cluster
   become: true
-  command: kubeadm init > /ansible/repo/kubeadm-init-output.log
-  args:
-    chdir: /tmp
+  shell: "kubeadm init > /ansible/repo/kubeadm-init-output.log"
 
 
 

@@ -1,12 +1,8 @@
-- name: Initialize Kubernetes cluster
-  hosts: master
-  become: true
-  tasks:
-    - name: Pull Kubernetes images
-      command: kubeadm config images pull
-      ignore_errors: yes
+- name: Pull Kubernetes images
+  command: kubeadm config images pull
+  ignore_errors: yes
 
-    - name: Initialize Kubernetes cluster
-      command: kubeadm init
+- name: Initialize Kubernetes cluster
+  command: kubeadm init
 
 

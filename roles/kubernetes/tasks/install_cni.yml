@@ -1,20 +1,7 @@
-- name: Download CNI binary
-  get_url:
-    url: "{{ cni_binary_url }}"
-    dest: "/tmp/cni-plugins.tgz"
-
-- name: Extract CNI binary
-  unarchive:
-    src: "/tmp/cni-plugins.tgz"
-    dest: "{{ cni_binary_dir_path }}"
-    remote_src: yes
-    copy: false
-    extra_opts: [--strip-components=1]
-
-- name: Ensure CNI binary ownership and permissions
-  file:
-    path: "{{ cni_binary_dir_path }}"
-    recurse: yes
-    owner: root
-    group: root
-    mode: '0755'
+- name: Download and extract CNI binary
+  become: true
+  shell: |
+    mkdir -p /opt/cni/bin
+    cd /opt/cni/bin
+    wget https://github.com/containernetworking/plugins/releases/download/v1.2.0/cni-plugins-linux-amd64-v1.2.0.tgz
+    tar -xzvf cni-plugins-linux-amd64-v1.2.0.tgz

@@ -3,11 +3,11 @@
 # It will include other task files to perform specific installation and configuration tasks
 
 - include_tasks: install_packages.yml
-- include_tasks: configure_kernel.yml
 - include_tasks: install_containerd.yml
 - include_tasks: install_runc.yml
 - include_tasks: install_cni.yml
 - include_tasks: install_crictl.yml
+- include_tasks: configure_kernel.yml
 - include_tasks: install_kubernetes.yml
 - include_tasks: initialize_cluster.yml
 - include_tasks: install_weave.yml

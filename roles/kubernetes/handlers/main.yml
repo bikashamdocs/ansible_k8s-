@@ -1,8 +1,6 @@
-handlers:
-  - name: restart containerd
-    systemd:
-      name: containerd
-      state: restarted
-    notify:
-      - Restart containerd
+- name: Restart containerd
+  become: true
+  service:
+    name: containerd
+    state: restarted
 

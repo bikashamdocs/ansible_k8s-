@@ -12,6 +12,11 @@
 - name: Initialize Kubernetes cluster
   become: true
   shell: "kubeadm init > /ansible/repo/kubeadm-init-output.log"
+  register: kubeadm_output
+  
+- name: Display kubeadm init output
+  debug:
+    var: kubeadm_output.stdout_lines
 
 
 

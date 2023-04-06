@@ -1,0 +1,14 @@
+- name: Install runc
+  hosts: master,worker
+  become: true
+  tasks:
+    - name: Download runc binary
+      get_url:
+        url: "{{ runc_binary_url }}"
+        dest: "/tmp/runc"
+
+    - name: Install runc binary
+      copy:
+        src: "/tmp/runc"
+        dest: "{{ runc_binary_path }}"
+        mode: 'a+x'

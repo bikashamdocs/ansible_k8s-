@@ -1,0 +1,14 @@
+- name: Install Kubernetes packages
+  hosts: all
+  become: true
+  tasks:
+    - name: Install necessary packages
+      apt:
+        name: ['apt-transport-https', 'ca-certificates', 'curl', 'gnupg-agent', 'software-properties-common']
+        state: present
+
+    - name: Update package cache
+      apt:
+        update_cache: yes
+
+

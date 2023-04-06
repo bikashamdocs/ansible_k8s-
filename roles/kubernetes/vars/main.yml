@@ -1,0 +1,34 @@
+---
+# Containerd
+containerd_version: "1.6.16"
+containerd_tarball_url: "https://github.com/containerd/containerd/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-linux-amd64.tar.gz"
+containerd_systemd_service_file_path: "/usr/local/lib/systemd/system/containerd.service"
+
+# Runc
+runc_version: "v1.1.4"
+runc_binary_url: "https://github.com/opencontainers/runc/releases/download/{{ runc_version }}/runc.amd64"
+runc_binary_path: "/usr/local/sbin/runc"
+
+# CNI
+cni_version: "v1.2.0"
+cni_binary_url: "https://github.com/containernetworking/plugins/releases/download/{{ cni_version }}/cni-plugins-linux-amd64-{{ cni_version }}.tgz"
+cni_binary_dir_path: "/opt/cni/bin"
+
+# CriCtl
+crictrl_version: "v1.26.0"
+crictrl_binary_url: "https://github.com/kubernetes-sigs/cri-tools/releases/download/{{ crictrl_version }}/crictl-{{ crictrl_version }}-linux-amd64.tar.gz"
+crictrl_binary_path: "/usr/local/bin/crictl"
+crictrl_config_file_path: "/etc/crictl.yaml"
+
+# Kubernetes
+k8s_apt_repo_key_url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+k8s_apt_repo_list_file_path: "/etc/apt/sources.list.d/kubernetes.list"
+k8s_version: "1.21.0-00"
+k8s_package_list:
+  - kubelet={{ k8s_version }}
+  - kubeadm={{ k8s_version }}
+  - kubectl={{ k8s_version }}
+
+# Weave Net CNI
+weave_net_manifest_url: "https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml"
+

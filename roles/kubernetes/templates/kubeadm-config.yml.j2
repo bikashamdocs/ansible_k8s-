@@ -1,0 +1,17 @@
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: InitConfiguration
+nodeRegistration:
+  kubeletExtraArgs:
+    cloud-provider: "external"
+---
+apiServerExtraArgs:
+  cloud-provider: "external"
+---
+apiVersion: kubeadm.k8s.io/v1beta2
+kind: ClusterConfiguration
+kubernetesVersion: {{ kubernetes_version }}
+controlPlaneEndpoint: "kubernetes.example.com:6443"
+networking:
+  podSubnet: "10.244.0.0/16"
+  serviceSubnet: "10.96.0.0/12"
+  dnsDomain: "cluster.local"

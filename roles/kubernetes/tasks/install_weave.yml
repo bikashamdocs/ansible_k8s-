@@ -1,0 +1,12 @@
+- name: Install Weave Net CNI
+  hosts: master
+  become: true
+  tasks:
+    - name: Download Weave Net CNI manifest
+      get_url:
+        url: "{{ weave_net_manifest_url }}"
+        dest: "/tmp/weave-daemonset-k8s.yaml"
+
+    - name: Apply Weave Net CNI manifest
+      become: true
+      command: "kubectl apply -f /tmp/weave-daemonset-k8s.yaml"

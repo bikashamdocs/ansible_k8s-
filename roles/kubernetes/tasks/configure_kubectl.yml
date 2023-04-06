@@ -1,6 +1,12 @@
-- name: Configure kubectl
+- name: Create .kube directory
   become: true
-  shell: |
-    mkdir -p $HOME/.kube
-    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  command: "mkdir -p {{ ansible_env.HOME }}/.kube"
+  
+- name: Copy kubernetes configuration to .kube directory
+  become: true
+  command: "sudo cp /etc/kubernetes/admin.conf {{ ansible_env.HOME }}/.kube/config"
+  
+- name: Change ownership of kubernetes configuration
+  become: true
+  command: "sudo chown $(id -u {{ ansible_env.USER }}):$(id -g {{ ansible_env.USER }}) {{ ansible_env.HOME }}/.kube/config"
+

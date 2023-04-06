@@ -7,10 +7,10 @@
 
 - name: Install kubelet, kubeadm, and kubectl
   apt:
-    name: "{{ item }}"
+    name: "{{ k8s_package_list }}"
     state: present
-  with_items: "{{ k8s_package_list }}"
-
+    update_cache: yes
+    
 - name: Hold Kubernetes packages at current version
   shell: sudo apt-mark hold kubelet kubeadm kubectl
 

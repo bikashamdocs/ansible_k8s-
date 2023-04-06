@@ -1,7 +1,7 @@
 - name: Download and extract CNI binary
   become: true
   shell: |
-    mkdir -p /opt/cni/bin
-    cd /opt/cni/bin
-    wget https://github.com/containernetworking/plugins/releases/download/v1.2.0/cni-plugins-linux-amd64-v1.2.0.tgz
-    tar -xzvf cni-plugins-linux-amd64-v1.2.0.tgz
+    mkdir -p {{ cni_binary_dir_path }}
+    cd {{ cni_binary_dir_path }}
+    wget {{ cni_binary_url }}
+    tar -xzvf cni-plugins-linux-amd64-{{ cni_version }}.tgz

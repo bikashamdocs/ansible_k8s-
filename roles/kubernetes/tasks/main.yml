@@ -10,5 +10,6 @@
 - include_tasks: configure_kernel.yml
 - include_tasks: install_kubernetes.yml
 - include_tasks: initialize_cluster.yml
+- include_tasks: configure_kubectl.yml
 - include_tasks: install_weave.yml
 

@@ -23,7 +23,7 @@ crictrl_config_file_path: "/etc/crictl.yaml"
 # Kubernetes
 k8s_apt_repo_key_url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
 k8s_apt_repo_list_file_path: "/etc/apt/sources.list.d/kubernetes.list"
-k8s_version: "1.21.0-00"
+k8s_version: "1.26.0-00"
 k8s_package_list:
   - kubelet={{ k8s_version }}
   - kubeadm={{ k8s_version }}

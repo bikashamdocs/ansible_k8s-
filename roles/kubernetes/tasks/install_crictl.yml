@@ -1,29 +1,25 @@
-- name: Install CRICTL
-  hosts: all
-  become: true
-  tasks:
-    - name: Download CRICTL binary
-      get_url:
-        url: "{{ crictrl_binary_url }}"
-        dest: "/tmp/crictl-{{ crictrl_version }}-linux-amd64.tar.gz"
+- name: Download CRICTL binary
+  get_url:
+    url: "{{ crictrl_binary_url }}"
+    dest: "/tmp/crictl-{{ crictrl_version }}-linux-amd64.tar.gz"
 
-    - name: Extract CRICTL binary
-      unarchive:
-        src: "/tmp/crictl-{{ crictrl_version }}-linux-amd64.tar.gz"
-        dest: "/usr/local/bin"
-        remote_src: yes
-        creates: "{{ crictrl_binary_path }}"
+- name: Extract CRICTL binary
+  unarchive:
+    src: "/tmp/crictl-{{ crictrl_version }}-linux-amd64.tar.gz"
+    dest: "/usr/local/bin"
+    remote_src: yes
+    creates: "{{ crictrl_binary_path }}"
 
-    - name: Remove CRICTL binary archive
-      file:
-        path: "/tmp/crictl-{{ crictrl_version }}-linux-amd64.tar.gz"
-        state: absent
+- name: Remove CRICTL binary archive
+  file:
+    path: "/tmp/crictl-{{ crictrl_version }}-linux-amd64.tar.gz"
+    state: absent
 
-    - name: Configure crictl
-      template:
-        src: "templates/crictl.yaml.j2"
-        dest: "{{ crictrl_config_file_path }}"
-      notify:
-        - Restart containerd
+- name: Configure crictl
+  template:
+    src: "templates/crictl.yaml.j2"
+    dest: "{{ crictrl_config_file_path }}"
+  notify:
+    - Restart containerd
 
 

@@ -15,6 +15,6 @@
   when: inventory_hostname == groups['masters'][0]
 - include_tasks: install_weave.yml
   when: inventory_hostname == groups['masters'][0]
-  - include_tasks: join_cluster.yml
+- include_tasks: join_cluster.yml
   when: inventory_hostname == groups['workers'][0]
 

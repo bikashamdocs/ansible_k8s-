@@ -8,6 +8,6 @@
     
 - name: Execute join command script on worker node
   become: true
-  script: /tmp/kubeadm-join-command.sh
+  shell: sh /tmp/kubeadm-join-command.sh
   become_user: root
 

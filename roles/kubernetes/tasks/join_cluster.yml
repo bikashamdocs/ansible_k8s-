@@ -1,3 +1,8 @@
----
-- name: Run kubeadm-join-command script on worker nodes
-  script: /ansible/repo/kubeadm-join-command.sh
+- name: Extract join command from file
+  shell: tail -n 1 /ansible/repo/kubeadm-init-output.log
+  register: join_command
+
+- name: Join worker node to Kubernetes cluster
+  become: true
+  shell: "{{ join_command.stdout }}"
+

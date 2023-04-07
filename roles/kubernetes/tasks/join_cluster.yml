@@ -1,10 +1,17 @@
+- name: Copy join command script to worker node
+  become: true
+  copy:
+    src: /ansible/repo/kubeadm-join-command.sh
+    dest: /tmp/kubeadm-join-command.sh
+    mode: '0777'
+    
 - name: Set executable permission on kubeadm-join-command.sh
   become: true
   file:
-    path: /ansible/repo/kubeadm-join-command.sh
-    mode: '0755'
-- name: Run kubeadm join command on worker node
-  become: true
-  shell: "/bin/bash /ansible/repo/kubeadm-join-command.sh"
+    path: /tmp/kubeadm-join-command.sh
+    mode: '0777'
 
+- name: Execute join command script on worker node
+  become: true
+  script: /tmp/kubeadm-join-command.sh
 

@@ -1,5 +1,5 @@
 ---
-master_ip: "172.31.89.227"
+master_ip: "172.31.93.36"
 # Containerd
 containerd_version: "1.6.16"
 containerd_tarball_url: "https://github.com/containerd/containerd/releases/download/v{{ containerd_version }}/containerd-{{ containerd_version }}-linux-amd64.tar.gz"

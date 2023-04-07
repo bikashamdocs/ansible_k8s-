@@ -19,21 +19,15 @@
   set_fact:
     token: "{{ kubeadm_output.stdout_lines[-2].split()[-1] }}"
     cert_hash: "{{ kubeadm_output.stdout_lines[-1].split()[-1] }}"
-    master_ip: "{{ ansible_host }}"
-
-- name: Join worker node to Kubernetes cluster
-  become: true
-  shell: |
-    kubeadm join {{ master_ip }}:6443 --token {{ token }} --discovery-token-ca-cert-hash {{ cert_hash }}
-  register: join_output
-
+    
 - name: Save join command to file
   become: true
   copy:
     dest: /ansible/repo/kubeadm-join-command.sh
     content: |
       #!/bin/bash
-      {{ join_output.stdout }}
+      kubeadm join {{ master_ip }}:6443 --token {{ token }} --discovery-token-ca-cert-hash {{ cert_hash }}
+  
 
     
 

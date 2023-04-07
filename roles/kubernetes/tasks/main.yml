@@ -10,6 +10,9 @@
 - include_tasks: configure_kernel.yml
 - include_tasks: install_kubernetes.yml
 - include_tasks: initialize_cluster.yml
+  when: inventory_hostname == groups['masters'][0]
 - include_tasks: configure_kubectl.yml
+  when: inventory_hostname == groups['masters'][0]
 - include_tasks: install_weave.yml
+  when: inventory_hostname == groups['masters'][0]
 

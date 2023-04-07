@@ -7,6 +7,7 @@
   file:
     path: /ansible/repo
     state: directory
+    mode: '0400'
   
 
 - name: Initialize Kubernetes cluster
@@ -24,7 +25,7 @@
     dest: /ansible/repo/kubeadm-join-command.sh
     content: |
       #!/bin/bash
-      kubeadm join {{ hostvars[host]['ansible_host'] }}:6443 --token {{ kubeadm_output.stdout_lines[-2].split()[-1] }} \
+      kubeadm join {{ master_ip }}:6443 --token {{ kubeadm_output.stdout_lines[-2].split()[-1] }} \
         --discovery-token-ca-cert-hash {{ kubeadm_output.stdout_lines[-1].split()[-1] }}
 
 

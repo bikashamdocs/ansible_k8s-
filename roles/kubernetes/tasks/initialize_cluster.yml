@@ -19,14 +19,6 @@
   debug:
     var: kubeadm_output.stdout_lines
     
-- name: Save join command to file
-  become: true
-  copy:
-    dest: /ansible/repo/kubeadm-join-command.sh
-    content: |
-      #!/bin/bash
-      kubeadm join {{ master_ip }}:6443 --token {{ kubeadm_output.stdout_lines[-2].split()[-1] }} \
-        --discovery-token-ca-cert-hash {{ kubeadm_output.stdout_lines[-1].split()[-1] }}
 
 
 

@@ -5,13 +5,8 @@
     dest: /tmp/kubeadm-join-command.sh
     mode: '0777'
     
-- name: Set executable permission on kubeadm-join-command.sh
-  become: true
-  file:
-    path: /tmp/kubeadm-join-command.sh
-    mode: '0777'
-
 - name: Execute join command script on worker node
   become: true
   script: /tmp/kubeadm-join-command.sh
+  become_user: root
 

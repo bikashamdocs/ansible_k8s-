@@ -4,6 +4,7 @@
     src: /ansible/repo/kubeadm-join-command.sh
     dest: /tmp/kubeadm-join-command.sh
     mode: '0777'
+    remote_src: true
     
 - name: Execute join command script on worker node
   become: true

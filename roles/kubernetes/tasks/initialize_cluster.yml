@@ -17,7 +17,7 @@
 
 - name: Extract token and cert hash from kubeadm output
   set_fact:
-    token: "{{ kubeadm_output.stdout_lines[-2].split()[-1] }}"
+    token: "{{ kubeadm_output.stdout_lines[-2].split()[-2] }}"
     cert_hash: "{{ kubeadm_output.stdout_lines[-1].split()[-1] }}"
     
 - name: Save join command to file

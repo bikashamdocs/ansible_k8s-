@@ -1,3 +1,9 @@
+- name: Disable swap and comment out swap entry in /etc/fstab
+  become: true
+  shell: |
+    swapoff -a
+    sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+
 - name: Install necessary packages
   apt:
     name: ['apt-transport-https', 'ca-certificates', 'curl', 'gnupg-agent', 'software-properties-common']
